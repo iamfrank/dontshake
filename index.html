@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>noshake</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="./css/main.css">
+    </head>
+    <body>
+
+        <main id="main">
+
+            <button id="test-btn" title="Test">Test</button>
+
+            <div id="app">
+                <p class="message"><strong>{{ msg }}</strong></p>
+                <p class="meter-container">
+                    <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
+                    <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
+                    <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span>
+                </p>
+            </div>
+
+            <button id="start-btn"></button>
+
+        </main>
+
+        <script src="./js/vue.js"></script>
+        <script src="./js/gyronorm.js"></script>
+        <script src="./js/nosleep.js"></script>
+        <script src="./js/main.js"></script>
+
+    </body>
+</html>
