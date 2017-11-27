@@ -1,14 +1,14 @@
 /*
- * Revision 1.2
+ * Revision 1.3
  */ 
 
 var gn = new GyroNorm(),
     ns = new NoSleep(),
     start_btn = document.getElementById('start-btn'),
     test_btn = document.getElementById('test-btn'),
-    horn = new Audio('./../audio/air_horn.mp3'),
-    bell = new Audio('./../audio/temple_bell.mp3'),
-    pin = new Audio('./../audio/pin_dropping.mp3'),
+    horn = new Audio('./audio/air_horn.mp3'),
+    bell = new Audio('./audio/temple_bell.mp3'),
+    pin = new Audio('./audio/pin_dropping.mp3'),
     game_on = false;
 
 
