@@ -10,11 +10,11 @@
     </head>
     <body>
 
-        <main id="app">
-            <div>
-                <button id="test-btn" title="Test" @click="testSound">Test</button>
+        <main id="app" :class="{ 'engaged': active_start_btn }">
+            <div class="ui-container">
+                <button class="btn" id="test-btn" title="Test" @click="testSound">Test</button>
                 <p class="message"><strong>{{ msg }}</strong></p>
-                <button id="start-btn" @click="gameStart"></button>
+                <button class="btn" id="start-btn" @click="bigBtnAction" :class="{ 'engaged': active_start_btn }">{{ btn_msg }}</button>
             </div>
             <div class="meter-container">
                 <!-- <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span> -->

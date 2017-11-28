@@ -14,13 +14,20 @@ var ns = new NoSleep(),
     pin = new Audio('./audio/pin_dropping.mp3'),
     game_on = false;
 
-
 function gameStart() {
     ns.enable();
     bell.play();
     vm.msg = 'Joust!';
+    vm.btn_msg = 'Stop';
     game_on = true;
-    setTimeout(gameOn, 1000);
+    setTimeout(gameOn, 2000);
+}
+
+function gameOn() {
+    if (game_on) {
+        pin.play();
+        setTimeout(gameOn, 2000);
+    }
 }
 
 function gameOver() {
@@ -29,18 +36,17 @@ function gameOver() {
         horn.play();
         game_on = false;
         vm.msg = 'Game over';
+        vm.btn_msg = 'Reset';
     }
+}
+
+function reset() {
+    vm.msg = 'Press to play';
+    vm.btn_msg = '';
 }
 
 function testSound() {
     bell.play();
-}
-
-function gameOn() {
-    if (game_on) {
-        pin.play();
-        setTimeout(gameOn, 1000);
-    }
 }
 
 function handleMotionEvent(event) {
@@ -53,7 +59,7 @@ function handleMotionEvent(event) {
     // vm.my = event.acceleration.y;
     // vm.mz = event.acceleration.z;
 
-    if (vm.mgx > 15 || vm.mgy > 15 || vm.mgz > 15) {
+    if (vm.mgx > 11 || vm.mgy > 11 || vm.mgz > 11) {
         gameOver();
     }
 }
@@ -70,18 +76,30 @@ vm = new Vue({
         // mz: 0,
         mgx: 0,
         mgy: 0,
-        mgz: 0
+        mgz: 0,
+        btn_msg: '',
+        active_start_btn: false
+    },
+    methods: {
+        bigBtnAction: function() {
+            if (this.btn_msg === 'Reset') {
+                this.active_start_btn = false;
+                reset();
+            } else if (this.btn_msg === 'Stop') {
+                gameOver();
+            } else {
+                this.active_start_btn = true;
+                gameStart();
+            }
+        }
     }
 })
 
 
 // Add event listeners
 
-start_btn.addEventListener('click', gameStart);
-
 if (window.DeviceMotionEvent) {
     window.addEventListener('devicemotion', handleMotionEvent);
 } else {
     vm.msg = 'Sorry! Your device does not display device motion.'
 }
-
