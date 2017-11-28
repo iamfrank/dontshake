@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>noshake</title>
+        <title>Don't Shake</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
         <meta name="description" content="">
         <meta name="author" content="">
@@ -10,25 +10,23 @@
     </head>
     <body>
 
-        <main id="main">
-
-            <button id="test-btn" title="Test">Test</button>
-
-            <div id="app">
+        <main id="app">
+            <div>
+                <button id="test-btn" title="Test" @click="testSound">Test</button>
                 <p class="message"><strong>{{ msg }}</strong></p>
-                <p class="meter-container">
-                    <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
-                    <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
-                    <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span>
-                </p>
+                <button id="start-btn" @click="gameStart"></button>
             </div>
-
-            <button id="start-btn"></button>
-
+            <div class="meter-container">
+                <!-- <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span> -->
+                <!-- <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span> -->
+                <!-- <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span> -->
+                <span class="meter meter-gx" v-bind:style="`height: ${mgx}rem`"></span>
+                <span class="meter meter-gy" v-bind:style="`height: ${mgy}rem`"></span>
+                <span class="meter meter-gz" v-bind:style="`height: ${mgz}rem`"></span>
+            </div>
         </main>
 
         <script src="./js/vue.js"></script>
-        <script src="./js/gyronorm.js"></script>
         <script src="./js/nosleep.js"></script>
         <script src="./js/main.js"></script>
 

@@ -1,9 +1,12 @@
 /*
- * Revision 1.3
+ * Revision 1.5
  */ 
 
-var gn = new GyroNorm(),
-    ns = new NoSleep(),
+// Consider https://github.com/kittykatattack/sound.js
+// or https://github.com/rserota/wad/blob/master/src/wad.js
+
+
+var ns = new NoSleep(),
     start_btn = document.getElementById('start-btn'),
     test_btn = document.getElementById('test-btn'),
     horn = new Audio('./audio/air_horn.mp3'),
@@ -40,9 +43,20 @@ function gameOn() {
     }
 }
 
+function handleMotionEvent(event) {
 
-start_btn.addEventListener('click', gameStart);
-test_btn.addEventListener('click', testSound);
+    vm.mgx = event.accelerationIncludingGravity.x;
+    vm.mgy = event.accelerationIncludingGravity.y;
+    vm.mgz = event.accelerationIncludingGravity.z;
+
+    // vm.mx = event.acceleration.x;
+    // vm.my = event.acceleration.y;
+    // vm.mz = event.acceleration.z;
+
+    if (vm.mgx > 15 || vm.mgy > 15 || vm.mgz > 15) {
+        gameOver();
+    }
+}
 
 
 // Initialize Vue instance
@@ -50,26 +64,24 @@ test_btn.addEventListener('click', testSound);
 vm = new Vue({
     el: '#app',
     data: {
-        msg: '',
-        mx: 0,
-        my: 0,
-        mz: 0
+        msg: 'Press to play',
+        // mx: 0,
+        // my: 0,
+        // mz: 0,
+        mgx: 0,
+        mgy: 0,
+        mgz: 0
     }
 })
 
 
-// Initialize Gyronorm instance
+// Add event listeners
 
-gn.init().then(function(){
-    gn.start(function(data){
-        vm.mx = data.dm.x; // ( devicemotion event acceleration x value )
-        vm.my = data.dm.y; // ( devicemotion event acceleration y value )
-        vm.mz = data.dm.z; // ( devicemotion event acceleration z value )
-        if (data.dm.x > 1.5 || data.dm.y > 1.5 || data.dm.z > 1.5) { 
-            gameOver();
-        }
-    });
-}).catch(function(e){
-    // Catch if the DeviceOrientation or DeviceMotion is not supported by the browser or device
-    vm.msg = 'Your device does not support DeviceOrientation or DeviceMotion';
-});
+start_btn.addEventListener('click', gameStart);
+
+if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion', handleMotionEvent);
+} else {
+    vm.msg = 'Sorry! Your device does not display device motion.'
+}
+
