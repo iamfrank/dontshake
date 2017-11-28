@@ -126,6 +126,7 @@ body {
 #start-btn.engaged {
     height: 15rem;
     width: 15rem;
+    background-image: none;
     background-color: #faa;
     color: #333;
 }
