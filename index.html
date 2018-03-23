@@ -17,17 +17,13 @@
                 <button class="btn" id="start-btn" @click="bigBtnAction" :class="{ 'engaged': active_start_btn }">{{ btn_msg }}</button>
             </div>
             <div class="meter-container">
-                <!-- <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span> -->
-                <!-- <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span> -->
-                <!-- <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span> -->
-                <span class="meter meter-gx" v-bind:style="`height: ${mgx}rem`"></span>
-                <span class="meter meter-gy" v-bind:style="`height: ${mgy}rem`"></span>
-                <span class="meter meter-gz" v-bind:style="`height: ${mgz}rem`"></span>
+                <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
+                <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
+                <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span>
             </div>
         </main>
 
         <script src="./js/vue.js"></script>
-        <script src="./js/nosleep.js"></script>
         <script src="./js/main.js"></script>
 
     </body>

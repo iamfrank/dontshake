@@ -6,8 +6,7 @@
 // or https://github.com/rserota/wad/blob/master/src/wad.js
 
 
-var ns = new NoSleep(),
-    start_btn = document.getElementById('start-btn'),
+var start_btn = document.getElementById('start-btn'),
     test_btn = document.getElementById('test-btn'),
     horn = new Audio('./audio/air_horn.mp3'),
     bell = new Audio('./audio/temple_bell.mp3'),
@@ -15,7 +14,6 @@ var ns = new NoSleep(),
     game_on = false;
 
 function gameStart() {
-    ns.enable();
     bell.play();
     vm.msg = 'Joust!';
     vm.btn_msg = 'Stop';
@@ -32,7 +30,6 @@ function gameOn() {
 
 function gameOver() {
     if (game_on) {
-        ns.disable();
         horn.play();
         game_on = false;
         vm.msg = 'Game over';
@@ -51,13 +48,9 @@ function testSound() {
 
 function handleMotionEvent(event) {
 
-    vm.mgx = event.accelerationIncludingGravity.x;
-    vm.mgy = event.accelerationIncludingGravity.y;
-    vm.mgz = event.accelerationIncludingGravity.z;
-
-    // vm.mx = event.acceleration.x;
-    // vm.my = event.acceleration.y;
-    // vm.mz = event.acceleration.z;
+    vm.mx = event.acceleration.x;
+    vm.my = event.acceleration.y;
+    vm.mz = event.acceleration.z;
 
     if (vm.mgx > 11 || vm.mgy > 11 || vm.mgz > 11) {
         gameOver();
@@ -71,12 +64,9 @@ vm = new Vue({
     el: '#app',
     data: {
         msg: 'Press to play',
-        // mx: 0,
-        // my: 0,
-        // mz: 0,
-        mgx: 0,
-        mgy: 0,
-        mgz: 0,
+        mx: 0,
+        my: 0,
+        mz: 0,
         btn_msg: '',
         active_start_btn: false
     },
