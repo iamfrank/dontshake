@@ -16,6 +16,9 @@
                 <p class="message"><strong>{{ msg }}</strong></p>
                 <button class="btn" id="start-btn" @click="bigBtnAction" :class="{ 'engaged': active_start_btn }">{{ btn_msg }}</button>
             </div>
+            <p>X {{ mx }}</p>
+            <p>Y {{ my }}</p>
+            <p>Z {{ mz }}</p>
             <div class="meter-container">
                 <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
                 <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>

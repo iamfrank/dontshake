@@ -52,7 +52,7 @@ function handleMotionEvent(event) {
     vm.my = event.acceleration.y;
     vm.mz = event.acceleration.z;
 
-    if (vm.mgx > 11 || vm.mgy > 11 || vm.mgz > 11) {
+    if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
         gameOver();
     }
 }
@@ -83,7 +83,7 @@ vm = new Vue({
             }
         }
     }
-})
+});
 
 
 // Add event listeners
@@ -91,5 +91,5 @@ vm = new Vue({
 if (window.DeviceMotionEvent) {
     window.addEventListener('devicemotion', handleMotionEvent);
 } else {
-    vm.msg = 'Sorry! Your device does not display device motion.'
-}
+    vm.msg = 'Sorry! Your device does not display device motion.';
+};
