@@ -59,11 +59,9 @@ new Vue({
     },
     methods: {
         handleMotionEvent: function(event) {
-            console.log('fi');
             this.mx = event.accelerationIncludingGravity.x;
-            console.log(this.mx);
-            //this.my = event.acceleration.y;
-            //this.mz = event.acceleration.z;
+            this.my = event.accelerationIncludingGravity.y;
+            this.mz = event.accelerationIncludingGravity.z;
         
             /*
                 if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
