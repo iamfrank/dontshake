@@ -59,13 +59,11 @@ new Vue({
     },
     methods: {
         handleMotionEvent: function(event) {
-            console.log('fishlo');
-            console.log(event.acceleration.x);
-            console.log(event.acceleration.y);
-            console.log(event.acceleration.z);
-            this.mx = event.acceleration.x;
-            this.my = event.acceleration.y;
-            this.mz = event.acceleration.z;
+            console.log('fi');
+            this.mx = event.accelerationIncludingGravity.x;
+            console.log(this.mx);
+            //this.my = event.acceleration.y;
+            //this.mz = event.acceleration.z;
         
             /*
                 if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
