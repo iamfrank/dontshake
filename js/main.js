@@ -5,7 +5,7 @@
 // Consider https://github.com/kittykatattack/sound.js
 // or https://github.com/rserota/wad/blob/master/src/wad.js
 
-
+/*
 var start_btn = document.getElementById('start-btn'),
     test_btn = document.getElementById('test-btn'),
     horn = new Audio('./audio/air_horn.mp3'),
@@ -42,25 +42,12 @@ function reset() {
     vm.btn_msg = '';
 }
 
-function testSound() {
-    bell.play();
-}
 
-function handleMotionEvent(event) {
-
-    vm.mx = event.acceleration.x;
-    vm.my = event.acceleration.y;
-    vm.mz = event.acceleration.z;
-
-    if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
-        gameOver();
-    }
-}
-
+*/
 
 // Initialize Vue instance
 
-vm = new Vue({
+new Vue({
     el: '#app',
     data: {
         msg: 'Press to play',
@@ -71,6 +58,21 @@ vm = new Vue({
         active_start_btn: false
     },
     methods: {
+        handleMotionEvent: function(event) {
+            console.log('fish');
+            console.log(event.acceleration.x);
+            console.log(event.acceleration.y);
+            console.log(event.acceleration.z);
+            this.mx = event.acceleration.x;
+            this.my = event.acceleration.y;
+            this.mz = event.acceleration.z;
+        
+            /*
+                if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
+                    gameOver();
+                }
+            */
+        },
         bigBtnAction: function() {
             if (this.btn_msg === 'Reset') {
                 this.active_start_btn = false;
@@ -81,15 +83,19 @@ vm = new Vue({
                 this.active_start_btn = true;
                 gameStart();
             }
+        },
+        testSound: function () {
+            //bell.play();
         }
+    },
+    created: function() {
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', this.handleMotionEvent());
+        } else {
+            vm.msg = 'Sorry! Your device does not display device motion.';
+        };
     }
 });
 
 
 // Add event listeners
-
-if (window.DeviceMotionEvent) {
-    window.addEventListener('devicemotion', handleMotionEvent);
-} else {
-    vm.msg = 'Sorry! Your device does not display device motion.';
-};
