@@ -90,7 +90,7 @@ new Vue({
     },
     created: function() {
         if (window.DeviceMotionEvent) {
-            window.addEventListener('devicemotion', this.handleMotionEvent());
+            window.addEventListener('devicemotion', this.handleMotionEvent);
         } else {
             vm.msg = 'Sorry! Your device does not display device motion.';
         };
