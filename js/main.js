@@ -1,5 +1,5 @@
 /*
- * Revision 1.5
+ * Revision 1.6
  */ 
 
 // Consider https://github.com/kittykatattack/sound.js
@@ -59,7 +59,7 @@ new Vue({
     },
     methods: {
         handleMotionEvent: function(event) {
-            console.log('fish');
+            console.log('fishlo');
             console.log(event.acceleration.x);
             console.log(event.acceleration.y);
             console.log(event.acceleration.z);
