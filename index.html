@@ -14,14 +14,14 @@
 
         <main id="app" :class="{ 'engaged': active_start_btn }">
             <div class="ui-container">
-                <button class="btn" id="test-btn" title="Test" @click="testSound()">Test</button>
-                <p class="message"><strong>{{ msg }}</strong></p>
-                <button class="btn" id="start-btn" @click="bigBtnAction()" :class="{ 'engaged': active_start_btn }">{{ btn_msg }}</button>
-            </div>
-            <div class="meter-container">
-                <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
-                <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
-                <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span>
+                <p>{{ points }}</p>
+                <button class="btn" id="start-btn" @click="bigBtnAction()" :class="{ 'engaged': active_start_btn }">
+                    {{ btn_msg }}
+                    <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
+                    <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
+                    <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span>
+                </button>
+                <p>{{ msg }}</p>
             </div>
         </main>
 

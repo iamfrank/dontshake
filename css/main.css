@@ -50,39 +50,26 @@ strong {
     margin-top: 4rem;
 }
 
-.meter-container {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-end;
-    justify-content: space-around;
-}
-
 .meter {
-    display: inline-block;
-    width: 1.5rem;
+    display: block;
+    position: absolute;
+    width: 2rem;
     min-height: .25rem;
     max-height: 5rem;
     background-color: #66d;
+    top: 50%;
+    left: 50%;
+    margin: -1rem 0 0 -1rem;
 }
 
 .meter-y {
     background-color: #d66;
+    transform: rotate(120deg);
 }
 
 .meter-z {
     background-color: #6d6;
-}
-
-.meter-gx {
-    background-color: #66d;
-}
-
-.meter-gy {
-    background-color: #d66;
-}
-
-.meter-gz {
-    background-color: #6d6;
+    transform: rotate(240deg);
 }
 
 .btn {
@@ -115,16 +102,7 @@ strong {
     font-size: 3rem;
     font-weight: bold;
     text-shadow: 0 .125rem .25rem rgba(0,0,0,0.25);
-}
-
-#test-btn {
-    position: fixed;
-    top: 1.5rem;
-    left: 1.5rem;
-    height: 3rem;
-    width: 3rem;
-    background-color: #666;
-    text-transform: uppercase;
+    position: relative;
 }
 
 #start-btn.engaged {
