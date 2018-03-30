@@ -1,4 +1,4 @@
-var CACHE_NAME = 'dontshake-cache-v1';
+var CACHE_NAME = 'dontshake-cache-v2';
 var urlsToCache = [
     './index.html',
     './serviceworker.js',
