@@ -1,11 +1,11 @@
 var CACHE_NAME = 'dontshake-cache-v1';
 var urlsToCache = [
-    '/index.html',
-    '/serviceworker.js',
-    '/css/main.css',
-    '/js/vue.js',
-    '/js/main.js',
-    '/img/fingerprint.png'
+    './index.html',
+    './serviceworker.js',
+    './css/main.css',
+    './js/vue.js',
+    './js/main.js',
+    './img/fingerprint.png'
 ];
 
 self.addEventListener('install', function(event) {
