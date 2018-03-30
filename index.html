@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Don't Shake</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
-        <meta name="description" content="">
+        <meta name="description" content="Don't Shake is a little experimental webapp that uses device motion sensors.">
         <meta name="author" content="">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="./css/main.css">
+        <link rel="manifest" href="./manifest.json">
     </head>
     <body>
 
@@ -25,6 +26,19 @@
 
         <script src="./js/vue.js"></script>
         <script src="./js/main.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }, function(err) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+                });
+            }
+        </script>
 
     </body>
 </html>

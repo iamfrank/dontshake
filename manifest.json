@@ -1,0 +1,16 @@
+{
+    "short_name": "Don't Shake",
+    "name": "'Don't Shake' by Frank Thomsen Renard",
+    "icons": [
+        {
+            "src": "img/fingerprint.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "background_color": "#333333",
+    "theme_color": "#333333",
+    "display": "standalone",
+    "orientation": "portrait",
+    "start_url": "index.html"
+  }
