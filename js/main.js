@@ -23,18 +23,15 @@ new Vue({
             this.mx = event.accelerationIncludingGravity.x;
             this.my = event.accelerationIncludingGravity.y;
             this.mz = event.accelerationIncludingGravity.z;
-            if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
-                if (active_start_btn) {
-                    points = points - 5;
-                }
+            if (this.mx > 11 || this.my > 11 || this.mz > 11) {
+                points = points - 5;
             }
         },
         bigBtnAction: function() {
             if (this.btn_msg === 'Reset') {
-                this.active_start_btn = false;
-                reset();
+                this.reset();
             } else if (this.btn_msg === 'Stop') {
-                gameOver();
+                this.gameOver();
             } else {
                 this.gameStart();
             }
@@ -42,13 +39,23 @@ new Vue({
         gameStart: function() {
             this.active_start_btn = true;
             this.btn_msg = 'Stop';
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', this.handleMotionEvent);
+            } else {
+                this.msg = 'Sorry! Your device does not display device motion.';
+            };
+        },
+        gameOver: function() {
+            window.removeEventListener('devicemotion', this.handleMotionEvent);
+            this.btn_msg = 'Reset';
+        },
+        reset: function() {
+            this.active_start_btn = false;
+            this.points = 1000;
+            this.btn_msg = 'Start';
         }
     },
     created: function() {
-        if (window.DeviceMotionEvent) {
-            window.addEventListener('devicemotion', this.handleMotionEvent);
-        } else {
-            this.msg = 'Sorry! Your device does not display device motion.';
-        };
+        
     }
 });
