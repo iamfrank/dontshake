@@ -1,7 +1,7 @@
-var CACHE_NAME = 'dontshake-cache-v2';
+var CACHE_NAME = 'dontshake-cache-v4';
 var urlsToCache = [
     './index.html',
-    './serviceworker.js',
+    //'./serviceworker.js',
     './css/main.css',
     './js/vue.js',
     './js/main.js',

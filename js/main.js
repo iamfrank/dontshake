@@ -23,12 +23,11 @@ new Vue({
             this.mx = event.accelerationIncludingGravity.x;
             this.my = event.accelerationIncludingGravity.y;
             this.mz = event.accelerationIncludingGravity.z;
-        
-            /*
-                if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
-                    gameOver();
+            if (vm.mx > 11 || vm.my > 11 || vm.mz > 11) {
+                if (active_start_btn) {
+                    points = points - 5;
                 }
-            */
+            }
         },
         bigBtnAction: function() {
             if (this.btn_msg === 'Reset') {
@@ -37,9 +36,12 @@ new Vue({
             } else if (this.btn_msg === 'Stop') {
                 gameOver();
             } else {
-                this.active_start_btn = true;
-                gameStart();
+                this.gameStart();
             }
+        },
+        gameStart: function() {
+            this.active_start_btn = true;
+            this.btn_msg = 'Stop';
         }
     },
     created: function() {
