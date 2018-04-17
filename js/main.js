@@ -24,7 +24,7 @@ new Vue({
             this.my = event.accelerationIncludingGravity.y;
             this.mz = event.accelerationIncludingGravity.z;
             if (this.mx > 11 || this.my > 11 || this.mz > 11) {
-                points = points - 5;
+                this.points = this.points - 5;
             }
         },
         bigBtnAction: function() {
