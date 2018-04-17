@@ -14,22 +14,23 @@
 
         <main id="app" :class="{ 'engaged': active_start_btn }">
             <div class="ui-container">
-                <p>{{ points }}</p>
                 <button class="btn" id="start-btn" @click="bigBtnAction()" :class="{ 'engaged': active_start_btn }">
                     <div>{{ btn_msg }}</div>
+                    <div>{{ points }}</div>
+                    <div>{{ time }}</div>
                     <div>
                         <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
                         <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
                         <span class="meter meter-z" v-bind:style="`height: ${mz}rem`"></span>
                     </div>
                 </button>
-                <p>{{ msg }}</p>
             </div>
         </main>
 
         <script src="./js/vue.js"></script>
         <script src="./js/main.js"></script>
         <script>
+            /*
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                     navigator.serviceWorker.register('./serviceworker.js').then(function(registration) {
@@ -41,6 +42,7 @@
                     });
                 });
             }
+            */
         </script>
 
     </body>

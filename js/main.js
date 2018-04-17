@@ -16,7 +16,8 @@ new Vue({
         my: 0,
         mz: 0,
         active_start_btn: false,
-        points: 1000
+        points: 70,
+        time: 300
     },
     methods: {
         handleMotionEvent: function(event) {
@@ -24,8 +25,8 @@ new Vue({
             this.my = event.accelerationIncludingGravity.y;
             this.mz = event.accelerationIncludingGravity.z;
             if (this.mx > 11 || this.my > 11 || this.mz > 11) {
-                this.points = this.points - 5;
-            }
+                this.points = this.points--;
+            };
         },
         bigBtnAction: function() {
             if (this.btn_msg === 'Reset') {
@@ -34,16 +35,16 @@ new Vue({
                 this.gameOver();
             } else {
                 this.gameStart();
-            }
+            };
         },
         gameStart: function() {
+            if (!window.DeviceMotionEvent) {
+                return false;
+            };
+            window.addEventListener('devicemotion', this.handleMotionEvent);
             this.active_start_btn = true;
             this.btn_msg = 'Stop';
-            if (window.DeviceMotionEvent) {
-                window.addEventListener('devicemotion', this.handleMotionEvent);
-            } else {
-                this.msg = 'Sorry! Your device does not display device motion.';
-            };
+            this.countdown(this.time);
         },
         gameOver: function() {
             window.removeEventListener('devicemotion', this.handleMotionEvent);
@@ -51,8 +52,21 @@ new Vue({
         },
         reset: function() {
             this.active_start_btn = false;
-            this.points = 1000;
+            this.points = 70;
+            this.time = 300;
             this.btn_msg = 'Start';
+        },
+        countdown: function(t) {
+            t--;
+            this.time = t;
+            setTimeout(() => {
+                if (t === 0) {
+                    this.time = 'Time is up!';
+                    this.gameOver();
+                } else {
+                    this.countdown(t);        
+                };
+            }, 1000);
         }
     },
     created: function() {
