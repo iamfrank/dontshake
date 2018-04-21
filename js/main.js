@@ -10,14 +10,17 @@
 new Vue({
     el: '#app',
     data: {
-        msg: '',
         btn_msg: 'Start',
         mx: 0,
         my: 0,
         mz: 0,
-        active_start_btn: false,
-        points: 70,
-        time: 300
+        points: 100,
+        time: 300,
+        script: {
+            ready: true,
+            started: false,
+            stopped: false
+        }
     },
     methods: {
         handleMotionEvent: function(event) {
@@ -25,13 +28,13 @@ new Vue({
             this.my = event.accelerationIncludingGravity.y;
             this.mz = event.accelerationIncludingGravity.z;
             if (this.mx > 11 || this.my > 11 || this.mz > 11) {
-                this.points = this.points--;
+                this.points--;
             };
         },
         bigBtnAction: function() {
-            if (this.btn_msg === 'Reset') {
+            if (this.script.stopped) {
                 this.reset();
-            } else if (this.btn_msg === 'Stop') {
+            } else if (this.script.started) {
                 this.gameOver();
             } else {
                 this.gameStart();
@@ -42,17 +45,21 @@ new Vue({
                 return false;
             };
             window.addEventListener('devicemotion', this.handleMotionEvent);
-            this.active_start_btn = true;
+            this.script.ready = false;
+            this.script.started = true;
             this.btn_msg = 'Stop';
             this.countdown(this.time);
         },
         gameOver: function() {
+            this.script.started = false;
+            this.script.stopped = true;
             window.removeEventListener('devicemotion', this.handleMotionEvent);
             this.btn_msg = 'Reset';
         },
         reset: function() {
-            this.active_start_btn = false;
-            this.points = 70;
+            this.script.stopped = false;
+            this.script.ready = true;
+            this.points = 100;
             this.time = 300;
             this.btn_msg = 'Start';
         },
@@ -60,7 +67,7 @@ new Vue({
             t--;
             this.time = t;
             setTimeout(() => {
-                if (t === 0) {
+                if (t === 0 || this.script.stopped) {
                     this.time = 'Time is up!';
                     this.gameOver();
                 } else {

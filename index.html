@@ -12,9 +12,9 @@
     </head>
     <body>
 
-        <main id="app" :class="{ 'engaged': active_start_btn }">
+        <main id="app" :class="{ 'engaged': script.started }">
             <div class="ui-container">
-                <button class="btn" id="start-btn" @click="bigBtnAction()" :class="{ 'engaged': active_start_btn }">
+                <button class="btn" id="start-btn" @click="bigBtnAction()" :class="{ 'engaged': script.started }">
                     <div>{{ btn_msg }}</div>
                     <div>{{ points }}</div>
                     <div>{{ time }}</div>
