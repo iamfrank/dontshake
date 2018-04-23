@@ -54,7 +54,7 @@ new Vue({
             this.script.started = false;
             this.script.stopped = true;
             window.removeEventListener('devicemotion', this.handleMotionEvent);
-            this.btn_msg = 'Reset';
+            this.btn_msg = 'Nulstil';
         },
         reset: function() {
             this.script.stopped = false;
@@ -68,7 +68,7 @@ new Vue({
             this.time = t;
             setTimeout(() => {
                 if (t === 0 || this.script.stopped) {
-                    this.time = 'Time is up!';
+                    this.time = 'Tiden er gået!';
                     this.gameOver();
                 } else {
                     this.countdown(t);        

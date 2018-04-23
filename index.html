@@ -15,9 +15,9 @@
         <main id="app" :class="{ 'engaged': script.started }">
             <div class="ui-container">
                 <button class="btn" id="start-btn" @click="bigBtnAction()" :class="{ 'engaged': script.started }">
+                    <div>{{ points }} point</div>
                     <div>{{ btn_msg }}</div>
-                    <div>{{ points }}</div>
-                    <div>{{ time }}</div>
+                    <div>{{ time }} sek</div>
                     <div>
                         <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
                         <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
