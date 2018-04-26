@@ -1,6 +1,6 @@
-var CACHE_NAME = 'dontshake-cache-v2';
+var CACHE_NAME = 'dontshake-cache-v11';
 var urlsToCache = [
-    './index.html',
+    './',
     './css/main.css',
     './js/vue.js',
     './js/main.js',
@@ -18,10 +18,15 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        console.log('fetching');
-        fetch(event.request).catch(function() {
-            console.log('get from cache');
-            return caches.match(event.request);
-        })
+        caches.match(event.request)
+            .then(function(response) {
+                if (response) {
+                    console.log('returning cached response');
+                    return response;
+                }
+                console.log('requesting online response');
+                return fetch(event.request);
+            }
+        )
     );
 });

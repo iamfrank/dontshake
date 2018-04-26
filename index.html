@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
     <head>
+        <meta charset="UTF-8">
         <title>Don't Shake</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
         <meta name="description" content="Don't Shake is a little experimental webapp that uses device motion sensors.">
@@ -15,9 +16,9 @@
         <main id="app" :class="{ 'engaged': script.started }">
             <div class="ui-container">
                 <button class="btn" id="start-btn" @click="bigBtnAction()" :class="{ 'engaged': script.started }">
-                    <div><smaller>{{ points }} point</smaller></div>
+                    <div v-if="!script.ready"><small>{{ points }} point</small></div>
                     <div>{{ btn_msg }}</div>
-                    <div><smaller>{{ time }} sek</smaller></div>
+                    <div v-if="!script.ready"><small>{{ time }} sek</small></div>
                     <div>
                         <span class="meter meter-x" v-bind:style="`height: ${mx}rem`"></span>
                         <span class="meter meter-y" v-bind:style="`height: ${my}rem`"></span>
@@ -33,15 +34,12 @@
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                     navigator.serviceWorker.register('./serviceworker.js').then(function(registration) {
-                        // Registration was successful
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
                     }, function(err) {
-                        // registration failed :(
                         console.log('ServiceWorker registration failed: ', err);
                     });
                 });
             }
-
         </script>
 
     </body>
