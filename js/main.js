@@ -27,7 +27,7 @@ new Vue({
             this.mx = event.accelerationIncludingGravity.x;
             this.my = event.accelerationIncludingGravity.y;
             this.mz = event.accelerationIncludingGravity.z;
-            if (this.mx > 20 || this.my > 20 || this.mz > 20) {
+            if (this.mx > 16 || this.my > 16 || this.mz > 16) {
                 this.points--;
             };
         },
