@@ -1,10 +1,10 @@
-var CACHE_NAME = 'dontshake-cache-v11';
+var CACHE_NAME = 'dontshake-cache-v4';
 var urlsToCache = [
-    './',
-    './css/main.css',
-    './js/vue.js',
-    './js/main.js',
-    './img/fingerprint.png'
+    '/',
+    '/css/main.css',
+    '/js/vue.js',
+    '/js/main.js',
+    '/img/fingerprint.png'
 ];
 
 self.addEventListener('install', function(event) {
@@ -17,6 +17,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+    console.log('fetching');
     event.respondWith(
         caches.match(event.request)
             .then(function(response) {
@@ -26,7 +27,13 @@ self.addEventListener('fetch', function(event) {
                 }
                 console.log('requesting online response');
                 return fetch(event.request);
-            }
-        )
+            })
+            .catch(function(err) {
+                console.log('Error matching request with cache file: ' + err);
+            })
     );
+});
+
+self.addEventListener('activate', function(event) {
+    console.log('Activating');
 });
