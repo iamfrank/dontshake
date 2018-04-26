@@ -10,6 +10,7 @@ var urlsToCache = [
 self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
+            console.log('service worker installed');
             return cache.addAll(urlsToCache);
         })
     );
@@ -17,7 +18,9 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(
+        console.log('fetching');
         fetch(event.request).catch(function() {
+            console.log('get from cache');
             return caches.match(event.request);
         })
     );
