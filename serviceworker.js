@@ -1,4 +1,4 @@
-var CACHE_NAME = 'dontshake-cache-v4';
+var CACHE_NAME = 'dontshake-cache-v6';
 var urlsToCache = [
     '/',
     '/css/main.css',
