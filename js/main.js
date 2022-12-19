@@ -2,81 +2,29 @@
  * Revision 1.7
  */ 
 
+// For sound effects:
 // Consider https://github.com/kittykatattack/sound.js
 // or https://github.com/rserota/wad/blob/master/src/wad.js
 
+const a_el = document.querySelector('.meter-x')
+const b_el = document.querySelector('.meter-y')
+const g_el = document.querySelector('.meter-z')
 
-// Initialize Vue instance
-new Vue({
-    el: '#app',
-    data: {
-        btn_msg: 'Start',
-        mx: 0,
-        my: 0,
-        mz: 0,
-        points: 100,
-        time: 300,
-        script: {
-            ready: true,
-            started: false,
-            stopped: false
-        }
-    },
-    methods: {
-        handleMotionEvent: function(event) {
-            this.mx = event.accelerationIncludingGravity.x;
-            this.my = event.accelerationIncludingGravity.y;
-            this.mz = event.accelerationIncludingGravity.z;
-            if (this.mx > 16 || this.my > 16 || this.mz > 16) {
-                this.points--;
-            };
-        },
-        bigBtnAction: function() {
-            if (this.script.stopped) {
-                this.reset();
-            } else if (this.script.started) {
-                this.gameOver();
-            } else {
-                this.gameStart();
-            };
-        },
-        gameStart: function() {
-            if (!window.DeviceMotionEvent) {
-                return false;
-            };
-            window.addEventListener('devicemotion', this.handleMotionEvent);
-            this.script.ready = false;
-            this.script.started = true;
-            this.btn_msg = 'Stop';
-            this.countdown(this.time);
-        },
-        gameOver: function() {
-            this.script.started = false;
-            this.script.stopped = true;
-            window.removeEventListener('devicemotion', this.handleMotionEvent);
-            this.btn_msg = 'Nulstil';
-        },
-        reset: function() {
-            this.script.stopped = false;
-            this.script.ready = true;
-            this.points = 100;
-            this.time = 300;
-            this.btn_msg = 'Start';
-        },
-        countdown: function(t) {
-            t--;
-            this.time = t;
-            setTimeout(() => {
-                if (t === 0 || this.script.stopped) {
-                    this.time = 'Tiden er gået!';
-                    this.gameOver();
-                } else {
-                    this.countdown(t);        
-                };
-            }, 1000);
-        }
-    },
-    created: function() {
-        
-    }
-});
+window.DeviceMotionEvent.requestPermission().then(response => {
+  console.log(response);
+
+  document.addEventListener('deviceorientation', function(event) {
+    alert('orientation'  + event.alpha)
+    a_el.innerHTML = event.alpha
+    b_el.innerHTML = event.beta
+    g_el.innerHTML = event.gamma
+  })
+  
+  document.addEventListener('devicemotion', function(event) {
+    alert('motion'  + event.alpha)
+    a_el.innerHTML = event.alpha
+    b_el.innerHTML = event.beta
+    g_el.innerHTML = event.gamma
+  })
+
+})
