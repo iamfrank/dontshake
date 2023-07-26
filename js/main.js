@@ -7,6 +7,7 @@ const b_el = document.querySelector('.meter-y')
 const g_el = document.querySelector('.meter-z')
 const startBtn = document.getElementById('startBtn')
 
+/*
 function requestOrientationPermission() {
   DeviceOrientationEvent.requestPermission()
   .then(response => {
@@ -23,6 +24,26 @@ function requestOrientationPermission() {
     alert('no device motion')
     console.error(err)
   })
+}
+*/
+
+function askPermission() {
+  try {
+    DeviceMotionEvent.requestPermission()
+    .then(response => {
+      window.addEventListener('devicemotion', (event) => {
+        a_el.innerHTML = event.accelerationIncludingGravity.x
+        b_el.innerHTML = event.accelerationIncludingGravity.y
+        g_el.innerHTML = event.accelerationIncludingGravity.z
+      })
+    })
+    .catch(err => {
+      alert('this is no good')
+    })
+  }
+  catch {
+    alert('Tried and failed')
+  }
 }
 
 startBtn.addEventListener('click', (e) => {
