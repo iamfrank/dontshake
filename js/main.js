@@ -6,6 +6,7 @@ const a_el = document.querySelector('.meter-x')
 const b_el = document.querySelector('.meter-y')
 const g_el = document.querySelector('.meter-z')
 const startBtn = document.getElementById('startBtn')
+const logEl = document.getElementById('log')
 
 /*
 function requestOrientationPermission() {
@@ -31,21 +32,27 @@ function askPermission() {
   try {
     DeviceMotionEvent.requestPermission()
     .then(response => {
+      if (response === 'denied') {
+        throw new Error('response denied')
+      }
+      logEl.innerHTML = 'Got permission response ' + response
       window.addEventListener('devicemotion', (event) => {
+        logEl.innerHTML = 'Got motion data ' + event.accelerationIncludingGravity.x
         a_el.innerHTML = event.accelerationIncludingGravity.x
         b_el.innerHTML = event.accelerationIncludingGravity.y
         g_el.innerHTML = event.accelerationIncludingGravity.z
       })
+    
     })
     .catch(err => {
-      alert('this is no good')
+      logEl.innerHTML = 'no response ' + err
     })
   }
-  catch {
-    alert('Tried and failed')
+  catch (err) {
+    logEl.innerHTML = 'Tried and failed: ' + err
   }
 }
 
 startBtn.addEventListener('click', (e) => {
-  requestOrientationPermission()
+  askPermission()
 })
