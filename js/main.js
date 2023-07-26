@@ -1,7 +1,3 @@
-/*
- * Revision 1.7
- */ 
-
 // For sound effects:
 // Consider https://github.com/kittykatattack/sound.js
 // or https://github.com/rserota/wad/blob/master/src/wad.js
@@ -9,22 +5,26 @@
 const a_el = document.querySelector('.meter-x')
 const b_el = document.querySelector('.meter-y')
 const g_el = document.querySelector('.meter-z')
+const startBtn = document.getElementById('startBtn')
 
-window.DeviceMotionEvent.requestPermission().then(response => {
-  console.log(response);
-
-  document.addEventListener('deviceorientation', function(event) {
-    alert('orientation'  + event.alpha)
-    a_el.innerHTML = event.alpha
-    b_el.innerHTML = event.beta
-    g_el.innerHTML = event.gamma
+function requestOrientationPermission() {
+  DeviceOrientationEvent.requestPermission()
+  .then(response => {
+    if (response === 'granted') {
+      window.addEventListener('deviceorientation', (e) => {
+        alert('orientation'  + e.alpha)
+        a_el.innerHTML = e.alpha
+        b_el.innerHTML = e.beta
+        g_el.innerHTML = e.gamma
+      })
+    }
   })
-  
-  document.addEventListener('devicemotion', function(event) {
-    alert('motion'  + event.alpha)
-    a_el.innerHTML = event.alpha
-    b_el.innerHTML = event.beta
-    g_el.innerHTML = event.gamma
+  .catch(err => {
+    alert('no device motion')
+    console.error(err)
   })
+}
 
+startBtn.addEventListener('click', (e) => {
+  requestOrientationPermission()
 })
