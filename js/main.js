@@ -28,31 +28,17 @@ function requestOrientationPermission() {
 }
 */
 
-function askPermission() {
-  try {
-    DeviceMotionEvent.requestPermission()
-    .then(response => {
-      if (response === 'denied') {
-        throw new Error('response denied')
-      }
-      logEl.innerHTML = 'Got permission response ' + response
-      window.addEventListener('devicemotion', (event) => {
-        logEl.innerHTML = 'Got motion data ' + event.accelerationIncludingGravity.x
-        a_el.innerHTML = event.accelerationIncludingGravity.x
-        b_el.innerHTML = event.accelerationIncludingGravity.y
-        g_el.innerHTML = event.accelerationIncludingGravity.z
-      })
-    
-    })
-    .catch(err => {
-      logEl.innerHTML = 'no response ' + err
-    })
-  }
-  catch (err) {
-    logEl.innerHTML = 'Tried and failed: ' + err
-  }
+function setMotionListener() {
+
+  window.addEventListener('deviceorientation', (event) => {
+    logEl.innerHTML = 'Got motion data ' + event
+    a_el.innerHTML = event.accelerationIncludingGravity.x
+    b_el.innerHTML = event.accelerationIncludingGravity.y
+    g_el.innerHTML = event.accelerationIncludingGravity.z
+  })
+
 }
 
 startBtn.addEventListener('click', (e) => {
-  askPermission()
+  setMotionListener()
 })
