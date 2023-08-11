@@ -1,19 +1,34 @@
+let log = []
+
 export function redirectConsoleToDOM(element) {
-  var originalLog = console.log
+
+  const originalLog = console.log
   console.log = function(message) {
     originalLog.apply(console, arguments) // Call the original console.log
-    element.innerHTML += '<p>' + message + '</p>'
+    log.push(message)
+    renderLog(element)
   }
+  const originalErr = console.error
   console.error = function(message) {
-    originalLog.apply(console, arguments) // Call the original console.log
-    element.innerHTML += '<p>' + message + '</p>'
+    originalErr.apply(console, arguments) // Call the original console.log
+    log.push(message)
+    renderLog(element)
   }
-  console.warning = function(message) {
-    originalLog.apply(console, arguments) // Call the original console.log
-    element.innerHTML += '<p>' + message + '</p>'
+  const originalWarn = console.warn
+  console.warn = function(message) {
+    originalWarn.apply(console, arguments) // Call the original console.log
+    log.push(message)
+    renderLog(element)
   }
+  const originalInfo = console.info
   console.info = function(message) {
-    originalLog.apply(console, arguments) // Call the original console.log
-    element.innerHTML += '<p>' + message + '</p>'
+    originalInfo.apply(console, arguments) // Call the original console.log
+    log.push(message)
+    renderLog(element)
   }
+}
+
+function renderLog(element) {
+  log = log.slice(-20)
+  element.innerHTML = '<span>' + log.join('</span><span>') + '</span>'
 }

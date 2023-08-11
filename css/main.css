@@ -1,22 +1,22 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 * + * {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 body {
-    background-color: #333;
-    font: 1rem/1.2 sans-serif;
-    color: #eee;
-    margin: 0;
+  background-color: #333;
+  font: 1rem/1.2 sans-serif;
+  color: #eee;
+  margin: 0;
 }
 
 strong {
-    color: #fff;
+  color: #fff;
 }
 
 #app {
@@ -81,29 +81,41 @@ strong {
 }
 
 .btn:active {
-    outline: none;
-    box-shadow: 0 .25rem 1.5rem .5rem rgba(0,0,0,0.5);
-    transition: all .5s;
+  outline: none;
+  box-shadow: 0 .25rem 1.5rem .5rem rgba(0,0,0,0.5);
+  transition: all .5s;
 }
 
 .btn:focus {
-    outline: none;
+  outline: none;
 }
 
 #start-btn {
-    background: url('../img/fingerprint.png') no-repeat center center #d00;
-    background-size: 5rem auto;
-    height: 15rem;
-    width: 15rem;
-    font-size: 2rem;
-    font-weight: bold;
-    text-shadow: 0 .125rem .25rem rgba(0,0,0,0.25);
+  background: url('../img/fingerprint.png') no-repeat center center #d00;
+  background-size: 5rem auto;
+  height: 15rem;
+  width: 15rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 .125rem .25rem rgba(0,0,0,0.25);
 }
 
 #start-btn.engaged {
-    height: 20rem;
-    width: 20rem;
-    background-image: none;
-    background-color: #faa;
-    color: #333;
+  height: 20rem;
+  width: 20rem;
+  background-image: none;
+  background-color: #faa;
+  color: #333;
+}
+
+#log {
+  display: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0.33;
+}
+
+#log span {
+  display: block;
 }

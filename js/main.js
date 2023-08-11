@@ -22,7 +22,6 @@ if (!DeviceMotionEvent) {
 function setMotionListener() {
   console.log('set in motion')
   window.addEventListener('devicemotion', (event) => {
-    console.log('Got motion data', event)
     a_el.innerHTML = event.accelerationIncludingGravity.x
     b_el.innerHTML = event.accelerationIncludingGravity.y
     g_el.innerHTML = event.accelerationIncludingGravity.z
