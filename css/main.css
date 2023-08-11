@@ -9,109 +9,46 @@
 }
 
 body {
-  background-color: #333;
-  font: 1rem/1.2 sans-serif;
-  color: #eee;
+  background-color: white;
+  font: 120%/1.3 sans-serif;
+  color: black;
   margin: 0;
 }
 
-strong {
-  color: #fff;
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
 }
 
-#app {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-around;
-    align-items: center;
-    padding: 1rem;
-}
-
-#app.engaged {
-    background-color: #f66;
-}
-
-.ui-container {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-}
-
-.message {
-    font-size: 3rem;
-    text-align: center;
-    margin-top: 4rem;
-}
-
-.meter {
-    display: inline-block;
-    width: 2rem;
-    min-height: .25rem;
-    max-height: 5rem;
-    background-color: #66d;
-    margin: 0;
-}
-
-.meter-y {
-    background-color: #d66;
-}
-
-.meter-z {
-    background-color: #6d6;
-}
-
-.btn {
-    border: none;
-    padding: 0;
-    color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 .25rem 1.5rem .25rem rgba(0,0,0,0.25);
-    transition: all .5s;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn:active {
-  outline: none;
-  box-shadow: 0 .25rem 1.5rem .5rem rgba(0,0,0,0.5);
-  transition: all .5s;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-#start-btn {
-  background: url('../img/fingerprint.png') no-repeat center center #d00;
-  background-size: 5rem auto;
+#startbtn {
+  background-color: transparent;
   height: 15rem;
   width: 15rem;
   font-size: 2rem;
-  font-weight: bold;
-  text-shadow: 0 .125rem .25rem rgba(0,0,0,0.25);
+  font-weight: 900;
+  border-radius: 50%;
+  border: solid 0.5rem red;
+  color: black;
+  text-transform: uppercase;
+  transition: transform 0.3s;
 }
 
-#start-btn.engaged {
+#startbtn:hover,
+#startbtn:active {
+  transform: scale(110%);
+}
+
+#status {
   height: 20rem;
   width: 20rem;
-  background-image: none;
-  background-color: #faa;
-  color: #333;
 }
 
 #log {
-  display: fixed;
-  bottom: 0;
-  left: 0;
+  position: fixed;
+  bottom: 0.5rem;
+  left: 0.5rem;
   z-index: 0;
   opacity: 0.33;
 }

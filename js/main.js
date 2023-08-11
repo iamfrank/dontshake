@@ -3,28 +3,25 @@
 // or https://github.com/rserota/wad/blob/master/src/wad.js
 
 import { redirectConsoleToDOM } from './console.js'
+import { updateCanvas } from './canvas.js'
 
-const a_el = document.querySelector('.meter-x')
-const b_el = document.querySelector('.meter-y')
-const g_el = document.querySelector('.meter-z')
-const startBtn = document.getElementById('startBtn')
+const startBtn = document.getElementById('startbtn')
+const canvasElement = document.getElementById('status')
 const logEl = document.getElementById('log')
 
 redirectConsoleToDOM(logEl)
 
 if (!DeviceMotionEvent) {
-  console.error('The application is not supported by your device')
   console.log('DeviceMotionEvent unavailable')
+  console.error('The application is not supported by your device')
 } else {
   console.log('DeviceMotionEvent available')
 }
 
 function setMotionListener() {
-  console.log('set in motion')
+  startBtn.hidden = true
   window.addEventListener('devicemotion', (event) => {
-    a_el.innerHTML = event.accelerationIncludingGravity.x
-    b_el.innerHTML = event.accelerationIncludingGravity.y
-    g_el.innerHTML = event.accelerationIncludingGravity.z
+    updateCanvas(canvasElement, event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)
   })
 }
 
