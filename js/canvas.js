@@ -1,34 +1,56 @@
-export function updateCanvas(canvasElement, a, b, c) {
-  const ctx = canvasElement.getContext('2d');
+export class Jitter {
 
-  const midpoint = [(canvasElement.width / 2), (canvasElement.height / 2)]
+  canvasElement
+  ctx
+  midpoint
+  point1
+  point2
+  point3
 
-  // Generate coordinates for the three points
-  const point1 = { x: midpoint - a, y: midpoint + a };
-  const point2 = { x: midpoint, y: midpoint - b };
-  const point3 = { x: midpoint + c, y: midpoint + c };
+  constructor(DOMelement) {
+    this.canvasElement = DOMelement
+    console.log('this.canvasElement', this.canvasElement)
+    this.ctx = this.canvasElement.getContext('2d')
+    this.midpoint = [(this.canvasElement.width / 2), (this.canvasElement.height / 2)]
 
-  // Clear the canvas
-  ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+    // Set styles
+    this.ctx.strokeStyle = 'black'
+    
+    this.ctx.fillStyle = 'red'
 
-  // Draw the lines connecting the points
-  ctx.beginPath();
-  ctx.moveTo(point1.x, point1.y);
-  ctx.lineTo(point2.x, point2.y);
-  ctx.lineTo(point3.x, point3.y);
-  ctx.closePath();
+    this.updateCanvas(10,10,10)
+  }
 
-  // Set line color
-  ctx.strokeStyle = 'black';
+  updateCanvas(a, b, c) {
 
-  // Draw the lines
-  ctx.stroke();
+    // Generate coordinates for the three points
+    this.point1 = { x: this.midpoint[0] - a, y: this.midpoint[1] + a }
+    this.point2 = { x: this.midpoint[0], y: this.midpoint[1] - b }
+    this.point3 = { x: this.midpoint[0] + c, y: this.midpoint[1] + c }
+    
+    // Clear the canvas
+    this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height)
+  
+    // Draw the lines connecting the points
+    this.ctx.strokeStyle = 'black'
+    this.ctx.beginPath()
+    this.ctx.moveTo(this.point1.x, this.point1.y)
+    this.ctx.lineTo(this.point2.x, this.point2.y)
+    this.ctx.lineTo(this.point3.x, this.point3.y)
+    this.ctx.closePath()
+  
+    // Draw the lines
+    this.ctx.stroke()
+  
+    // Draw the points
+    /*
+    this.ctx.fillStyle = 'red'
+    this.ctx.beginPath()
+    this.ctx.arc(this.point1.x, this.point1.y, 5, 0, Math.PI * 2)
+    this.ctx.arc(this.point2.x, this.point2.y, 5, 0, Math.PI * 2)
+    this.ctx.arc(this.point3.x, this.point3.y, 5, 0, Math.PI * 2)
+    this.ctx.fill()
+    */
+  }
 
-  // Draw the points
-  ctx.fillStyle = 'red';
-  ctx.beginPath();
-  ctx.arc(point1.x, point1.y, 5, 0, Math.PI * 2);
-  ctx.arc(point2.x, point2.y, 5, 0, Math.PI * 2);
-  ctx.arc(point3.x, point3.y, 5, 0, Math.PI * 2);
-  ctx.fill();
 }

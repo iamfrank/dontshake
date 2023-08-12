@@ -3,11 +3,14 @@
 // or https://github.com/rserota/wad/blob/master/src/wad.js
 
 import { redirectConsoleToDOM } from './console.js'
-import { updateCanvas } from './canvas.js'
+import { Jitter } from './canvas.js'
 
 const startBtn = document.getElementById('startbtn')
-const canvasElement = document.getElementById('status')
+const canvasEl = document.getElementById('status')
 const logEl = document.getElementById('log')
+console.log(canvasEl)
+const jit = new Jitter(canvasEl)
+console.log(jit)
 
 redirectConsoleToDOM(logEl)
 
@@ -20,8 +23,9 @@ if (!DeviceMotionEvent) {
 
 function setMotionListener() {
   startBtn.hidden = true
+  canvasEl.hidden = false
   window.addEventListener('devicemotion', (event) => {
-    updateCanvas(canvasElement, event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)
+    jit.updateCanvas(event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)
   })
 }
 
