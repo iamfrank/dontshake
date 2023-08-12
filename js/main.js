@@ -8,7 +8,6 @@ import { Jitter } from './canvas.js'
 const startBtn = document.getElementById('startbtn')
 const canvasEl = document.getElementById('status')
 const logEl = document.getElementById('log')
-console.log(canvasEl)
 const jit = new Jitter(canvasEl)
 console.log(jit)
 

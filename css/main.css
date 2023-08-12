@@ -40,11 +40,6 @@ main {
   transform: scale(110%);
 }
 
-#status {
-  height: 20rem;
-  width: 20rem;
-}
-
 #log {
   position: fixed;
   bottom: 0.5rem;
