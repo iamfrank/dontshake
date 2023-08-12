@@ -6,10 +6,8 @@ import { redirectConsoleToDOM } from './console.js'
 import { Jitter } from './canvas.js'
 
 const startBtn = document.getElementById('startbtn')
-const canvasEl = document.getElementById('status')
+const canvasEl = document.getElementById('jitter')
 const logEl = document.getElementById('log')
-const jit = new Jitter(canvasEl)
-console.log(jit)
 
 redirectConsoleToDOM(logEl)
 
@@ -23,6 +21,8 @@ if (!DeviceMotionEvent) {
 function setMotionListener() {
   startBtn.hidden = true
   canvasEl.hidden = false
+  const jit = new Jitter(canvasEl)
+  console.log(jit)
   window.addEventListener('devicemotion', (event) => {
     jit.updateCanvas(event.accelerationIncludingGravity.x, event.accelerationIncludingGravity.y, event.accelerationIncludingGravity.z)
   })

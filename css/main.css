@@ -40,6 +40,16 @@ main {
   transform: scale(110%);
 }
 
+#jitter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
 #log {
   position: fixed;
   bottom: 0.5rem;
