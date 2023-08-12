@@ -55,6 +55,10 @@ export class Jitter {
   
     // Draw the lines
     this.ctx.stroke()
+
+    if (a > 10 || b > 10 || c > 10) {
+      console.log('too fast!')
+    }
   }
 
 }
