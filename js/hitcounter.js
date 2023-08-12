@@ -14,12 +14,21 @@ export class HitCounter extends HTMLElement {
   }
 
   #render() {
-    this.innerHTML = `<p>Hits: ${ this.hits }</p>`
+    this.innerHTML = `
+      <p>Hits: ${ this.hits }</p>
+      <p id="hitalert" hidden>Don't shake!</p>
+    `
   }
 
   takeHit() {
     this.hits = this.hits + 1
-    this.#render()
+    this.#render(true)
+
+    const hitAlert = this.querySelector('#hitalert')
+    hitAlert.hidden = false
+    setTimeout(() => {
+      hitAlert.hidden = true
+    }, 2500)
   }
 
 }

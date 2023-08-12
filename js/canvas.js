@@ -20,7 +20,6 @@ export class Jitter {
     this.midpoint = [(this.canvasElement.width / 2), (this.canvasElement.height / 2)]
 
     this.updateCanvas(1,1,1)
-    window.dispatchEvent(this.hitEvent)
   }
 
   calcPoint(mid, value) {
