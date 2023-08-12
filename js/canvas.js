@@ -8,18 +8,16 @@ export class Jitter {
   point3
 
   constructor(DOMelement) {
-    this.canvasElement = DOMelement
 
+    this.canvasElement = DOMelement
     this.canvasElement.height = this.canvasElement.clientHeight
     this.canvasElement.width = this.canvasElement.clientWidth
     
     this.ctx = this.canvasElement.getContext('2d')
-    // Set styles
-    this.ctx.strokeStyle = 'red'
+    this.ctx.strokeStyle = 'red' // Set style
 
     this.midpoint = [(this.canvasElement.width / 2), (this.canvasElement.height / 2)]
 
-    console.log('this.canvasElement', this.canvasElement)
     this.updateCanvas(1,1,1)
   }
 
@@ -56,7 +54,7 @@ export class Jitter {
     // Draw the lines
     this.ctx.stroke()
 
-    if (a > 10 || b > 10 || c > 10) {
+    if (a > 5 || b > 5 || c > 5) {
       console.log('too fast!')
     }
   }
