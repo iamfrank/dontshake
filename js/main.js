@@ -4,6 +4,9 @@
 
 import { Jitter } from './canvas.js'
 import { redirectConsoleToDOM } from './console.js'
+import { HitCounter } from './hitcounter.js'
+
+customElements.define('hit-counter', HitCounter)
 
 const startBtn = document.getElementById('startbtn')
 const canvasEl = document.getElementById('jitter')

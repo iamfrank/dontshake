@@ -6,6 +6,7 @@ export class Jitter {
   point1
   point2
   point3
+  hitEvent = new CustomEvent('hit', {bubbles: true})
 
   constructor(DOMelement) {
 
@@ -56,6 +57,7 @@ export class Jitter {
 
     if (a > 5 || b > 5 || c > 5) {
       console.log('too fast!')
+      this.dispatchEvent(hitEvent)
     }
   }
 
