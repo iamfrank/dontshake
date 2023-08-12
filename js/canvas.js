@@ -20,6 +20,7 @@ export class Jitter {
     this.midpoint = [(this.canvasElement.width / 2), (this.canvasElement.height / 2)]
 
     this.updateCanvas(1,1,1)
+    window.dispatchEvent(this.hitEvent)
   }
 
   calcPoint(mid, value) {
@@ -57,7 +58,7 @@ export class Jitter {
 
     if (a > 5 || b > 5 || c > 5) {
       console.log('too fast!')
-      this.dispatchEvent(hitEvent)
+      window.dispatchEvent(this.hitEvent)
     }
   }
 
