@@ -21,12 +21,25 @@ export class Jitter {
     this.updateCanvas(10,10,10)
   }
 
+  calcPoint(mid, value) {
+    return mid + (value * 2)
+  }
+
   updateCanvas(a, b, c) {
 
     // Generate coordinates for the three points
-    this.point1 = { x: this.midpoint[0] - a, y: this.midpoint[1] + a }
-    this.point2 = { x: this.midpoint[0], y: this.midpoint[1] - b }
-    this.point3 = { x: this.midpoint[0] + c, y: this.midpoint[1] + c }
+    this.point1 = { 
+      x: this.calcPoint(this.midpoint[0], -a), 
+      y: this.calcPoint(this.midpoint[1], a)
+    }
+    this.point2 = { 
+      x: this.calcPoint(this.midpoint[0], 0), 
+      y: this.calcPoint(this.midpoint[1], -b)
+    }
+    this.point3 = { 
+      x: this.calcPoint(this.midpoint[0], c), 
+      y: this.calcPoint(this.midpoint[1], c)
+    }
     
     // Clear the canvas
     this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height)
