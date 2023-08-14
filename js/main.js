@@ -12,6 +12,18 @@ const startBtn = document.getElementById('startbtn')
 const canvasEl = document.getElementById('jitter')
 const logEl = document.getElementById('log')
 
+function setMotionListener() {
+  startBtn.hidden = true
+  canvasEl.hidden = false
+  const jit = new Jitter(canvasEl)
+  console.log(jit)
+  window.addEventListener('devicemotion', deviceMotionHandler)
+}
+
+function deviceMotionHandler(event) {
+  requestAnimationFrame(jit.updateCanvas(event.acceleration.x, event.acceleration.y, event.acceleration.z))
+}
+
 // For debugging
 redirectConsoleToDOM(logEl)
 
@@ -21,16 +33,6 @@ try {
     throw new Error('The application is not supported by your device')
   } else {
     console.log('DeviceMotionEvent available')
-  }
-
-  function setMotionListener() {
-    startBtn.hidden = true
-    canvasEl.hidden = false
-    const jit = new Jitter(canvasEl)
-    console.log(jit)
-    window.addEventListener('devicemotion', (event) => {
-      requestAnimationFrame(jit.updateCanvas(event.acceleration.x, event.acceleration.y, event.acceleration.z))
-    })
   }
 
   startBtn.addEventListener('click', (e) => {
