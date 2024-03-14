@@ -13,6 +13,7 @@ const canvasEl = document.getElementById('jitter')
 const logEl = document.getElementById('log')
 
 function setMotionListener() {
+  console.log('the f')
   startBtn.hidden = true
   canvasEl.hidden = false
   const jit = new Jitter(canvasEl)
@@ -21,6 +22,7 @@ function setMotionListener() {
 }
 
 function deviceMotionHandler(event) {
+  console.log('handle some motion')
   requestAnimationFrame(jit.updateCanvas(event.acceleration.x, event.acceleration.y, event.acceleration.z))
 }
 
@@ -29,16 +31,11 @@ redirectConsoleToDOM(logEl)
 
 try {
   if (!DeviceMotionEvent) {
-    console.log('DeviceMotionEvent unavailable')
+    console.error('DeviceMotionEvent unavailable')
     throw new Error('The application is not supported by your device')
   } else {
-    console.log('DeviceMotionEvent available')
+    startBtn.addEventListener('click', setMotionListener)
   }
-
-  startBtn.addEventListener('click', (e) => {
-    setMotionListener()
-  })
-
 }
 catch (err) {
   console.error(err)

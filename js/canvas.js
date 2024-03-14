@@ -58,6 +58,8 @@ export class Jitter {
     if (a > 5 || b > 5 || c > 5) {
       console.log('too fast!')
       window.dispatchEvent(this.hitEvent)
+    } else {
+      console.log('too slow')
     }
   }
 

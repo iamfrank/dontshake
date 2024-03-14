@@ -1,5 +1,10 @@
 let log = []
 
+function renderLog(element) {
+  log = log.slice(-20)
+  element.innerHTML = '<span>' + log.join('</span><span>') + '</span>'
+}
+
 export function redirectConsoleToDOM(element) {
 
   const originalLog = console.log
@@ -26,9 +31,4 @@ export function redirectConsoleToDOM(element) {
     log.push(message)
     renderLog(element)
   }
-}
-
-function renderLog(element) {
-  log = log.slice(-20)
-  element.innerHTML = '<span>' + log.join('</span><span>') + '</span>'
 }
