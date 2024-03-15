@@ -34,9 +34,9 @@ try {
   if (!DeviceMotionEvent) {
     console.error('DeviceMotionEvent unavailable')
     throw new Error('The application is not supported by your device')
-  } else if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    DeviceMotionEvent.requestPermission().then(() => {
-      console.log('got permission')
+  } else if (DeviceMotionEvent.requestPermission) {
+    DeviceMotionEvent.requestPermission().then((permission) => {
+      console.log('got permission', permission)
       startBtn.addEventListener('click', setMotionListener)
     })
   } else {
