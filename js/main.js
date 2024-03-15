@@ -35,11 +35,13 @@ try {
     console.error('DeviceMotionEvent unavailable')
     throw new Error('The application is not supported by your device')
   } else if (DeviceMotionEvent.requestPermission) {
+    console.log('DeviceMotionEvent available with permission')
     DeviceMotionEvent.requestPermission().then((permission) => {
       console.log('got permission', permission)
       startBtn.addEventListener('click', setMotionListener)
     })
   } else {
+    console.log('DeviceMotionEvent available')
     startBtn.addEventListener('click', setMotionListener)
   }
 }
