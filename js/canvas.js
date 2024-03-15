@@ -27,6 +27,7 @@ export class Jitter {
   }
 
   updateCanvas(a, b, c) {
+    console.log('update canvas')
 
     // Generate coordinates for the three points
     this.point1 = { 
