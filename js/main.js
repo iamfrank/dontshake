@@ -30,6 +30,7 @@ function deviceMotionHandler(event) {
 redirectConsoleToDOM(logEl)
 
 try {
+  console.log(window.navigator.userAgent)
   if (!DeviceMotionEvent) {
     console.error('DeviceMotionEvent unavailable')
     throw new Error('The application is not supported by your device')
